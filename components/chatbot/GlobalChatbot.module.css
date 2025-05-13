@@ -1,0 +1,179 @@
+/* components/chatbot/GlobalChatbot.module.css */
+
+.globalChatbotContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; 
+  }
+  
+  .openButton {
+    background-color: var(--pastel-blue);
+    color: #111;
+    border: none;
+    border-radius: 50%;
+    width: 60px; 
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .openButton:hover {
+    transform: scale(1.1);
+    background-color: #8fb8e0;
+  }
+  
+  .chatWindow {
+    width: 350px;
+    max-height: calc(100vh - 20px - 20px); 
+    
+    background-color: transparent;
+    border-radius: 12px; 
+    box-shadow: none; 
+    border: none;
+    backdrop-filter: none; 
+    
+    display: flex;
+    flex-direction: column; 
+    position: relative; 
+    animation: slideInUpChat 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .chatHeader {
+    padding: 8px 10px; 
+    background-color: transparent; 
+    border-bottom: none;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    color: var(--text-primary-on-dark, #e0e0e0); 
+    height: 40px; 
+    flex-shrink: 0; 
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: var(--text-secondary-on-dark, #b0b0b0);
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: color 0.2s, background-color 0.2s;
+  }
+  .closeButton:hover {
+    color: var(--text-primary-on-dark, #e0e0e0);
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .messagesList {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    
+    padding: 25px 15px;
+    display: flex;
+    /* MODIFICADO: Quitar column-reverse. Usar el orden natural del DOM (arriba a abajo) */
+    flex-direction: column; 
+    gap: 12px;
+    position: relative; 
+    
+    /* La máscara de desvanecimiento superior sigue siendo útil */
+    mask-image: linear-gradient(to top, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%);
+  }
+  
+  /* Los estilos de .message, .message.bot, .message.user, .message p,
+     .messageForm, .input, .sendButton, y las animaciones y scrollbar
+     permanecen IGUAL que en la versión anterior.
+     No los repito aquí para brevedad, pero asegúrate de que estén en tu archivo.
+  */
+  
+  .message {
+    max-width: 85%; 
+    padding: 10px 14px;
+    border-radius: 18px;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    animation: fadeInMessage 0.3s ease-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+  }
+  
+  .message.bot {
+    background-color: #383a3f; 
+    color: var(--text-primary-on-dark, #e0e0e0);
+    align-self: flex-start; /* Los mensajes del bot a la izquierda */
+    border-bottom-left-radius: 6px; 
+  }
+  
+  .message.user {
+    background-color: var(--pastel-blue); 
+    color: #1a1a1a; 
+    align-self: flex-end; /* Los mensajes del usuario a la derecha */
+    border-bottom-right-radius: 6px;
+  }
+  
+  .message p { margin: 0; }
+  
+  .messageForm {
+    display: flex;
+    padding: 10px 12px;
+    background-color: transparent;
+    border-top: none;
+    height: 62px; 
+    flex-shrink: 0; 
+  }
+  
+  .input {
+    flex-grow: 1;
+    padding: 10px 14px;
+    border: 1px solid #4a4a4f;
+    border-radius: 20px;
+    background-color: rgba(37, 37, 42, 0.8); 
+    color: var(--text-primary-on-dark, #e0e0e0);
+    font-size: 0.9rem;
+    margin-right: 10px;
+    outline: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .input:focus {
+    border-color: var(--pastel-blue);
+    background-color: rgba(30, 30, 35, 0.9);
+  }
+  
+  .sendButton {
+    background-color: var(--pastel-blue);
+    color: #111;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .sendButton:hover {
+    background-color: #8fb8e0;
+  }
+  
+  @keyframes slideInUpChat {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  
+  @keyframes fadeInMessage {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .messagesList::-webkit-scrollbar { width: 6px; }
+  .messagesList::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 10px; }
+  .messagesList::-webkit-scrollbar-thumb { background-color: #555; border-radius: 10px; }
+  .messagesList::-webkit-scrollbar-thumb:hover { background-color: #777; }

@@ -1,0 +1,38 @@
+/* styles/globals.css */
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: black; /* Fondo negro por defecto para toda la página */
+  color: var(--text-primary-on-dark, #e0e0e0); /* Color de texto claro por defecto sobre fondo oscuro */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  --pastel-blue: #A7C7E7;
+  --pastel-pink: #FFB6C1;
+  --pastel-green: #B0E57C;
+  --text-primary-on-dark: #e0e0e0; /* Para texto sobre fondo oscuro general */
+  --text-secondary-on-dark: #b0b0b0;
+  --text-primary: #333;
+  --text-secondary: #555;
+  --background-light: #ffffff;
+  --background-medium: #f8f9fa;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  /* Variable para el color de fondo negro principal */
+  --main-background: #000000;
+}

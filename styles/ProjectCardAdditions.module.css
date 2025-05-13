@@ -1,0 +1,63 @@
+/* styles/ProjectCardAdditions.module.css */
+.curiositySection {
+    margin-top: 1.5rem; /* Espacio después del collage */
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column; /* Apila el texto y el botón verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center; /* Centra el texto si se envuelve */
+    gap: 0.05rem; /* Espacio entre el texto y el botón */
+  }
+  
+  .curiosityText {
+    font-size: 1.1rem;
+    color: var(--text-secondary-on-dark, #b0b0b0);
+    /* margin-bottom ya no es necesario aquí debido al gap en el contenedor flex */
+  }
+  
+  .curiosityButton {
+    background-color: transparent; /* Fondo transparente inicialmente */
+    border: 1px solid var(--pastel-blue); /* Borde con color pastel */
+    color: var(--pastel-blue); /* Texto con color pastel */
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px; /* Bordes más redondeados */
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex; /* Para alinear el icono y el texto correctamente */
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre el icono y el texto del botón */
+    text-decoration: none; /* Por si acaso, aunque es un botón */
+  }
+  
+  .curiosityButton svg {
+    transition: transform 0.3s ease; /* Transición para la flecha */
+    width: 20px; /* Tamaño explícito para el icono */
+    height: 20px;
+  }
+  
+  .curiosityButton:hover {
+    background-color: var(--pastel-blue); /* Cambia el fondo al pasar el ratón */
+    color: #111; /* Texto oscuro para contraste */
+    box-shadow: 0 0 15px rgba(167, 199, 231, 0.4); /* Sombra sutil con el color pastel */
+  }
+  
+  .curiosityButton:hover svg {
+    transform: translateX(5px); /* Mueve la flecha a la derecha al pasar el ratón */
+  }
+  
+  /* Media query para ajustar en pantallas más pequeñas si es necesario */
+  @media (max-width: 768px) {
+    .curiositySection {
+      align-items: center; /* Mantenemos centrado */
+    }
+    .curiosityText {
+      font-size: 1rem;
+    }
+    .curiosityButton {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+  }

@@ -1,0 +1,161 @@
+/* components/layout/Navbar.module.css */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  height: auto;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  height: 4rem;
+  padding: 0 1.5rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: none;
+  border: none;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease,
+              border-radius 0.5s ease, padding 0.5s ease,
+              max-width 0.5s ease, height 0.5s ease,
+              backdrop-filter 0.5s ease, border 0.5s ease;
+}
+
+.navbar.scrolled .container {
+  background-color: rgba(35, 35, 40, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  max-width: 1000px !important;
+  height: 3.8rem !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+  border: 0px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* --- LOGO --- */
+/* Modificamos .logo para usar Flexbox */
+.logo {
+  display: flex; /* Para alinear imagen y texto horizontalmente */
+  align-items: center; /* Para alinear verticalmente imagen y texto */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: lightgray;
+  transition: color 0.5s ease;
+  text-decoration: none; /* Quita el subrayado del link */
+  gap: 0.5rem; /* Espacio entre el logo y el texto */
+}
+
+/* Estilos opcionales para la imagen del logo si necesitas ajustar algo más */
+.logoImage {
+  /* Podrías añadir border-radius si tu logo lo necesita */
+  /* border-radius: 50%; */
+  /* Ajuste vertical si no queda perfecto con align-items */
+  /* vertical-align: middle; Ya no es necesario con flex */
+}
+
+
+/* --- LINKS DE NAVEGACIÓN --- */
+.navLinksContainer {
+  display: flex;
+  gap: 1.3rem;
+  margin-left: -95px;
+}
+
+.navLink {
+  color: lightgray;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  position: relative;
+  transition: color 0.5s ease, background-color 0.3s ease;
+  background: none !important;
+  text-decoration: none; /* Quita el subrayado del link */
+}
+.navLink:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.navbar.scrolled .navLink {
+  color: lightgray;
+}
+.navbar.scrolled .navLink:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+
+/* --- SELECTOR DE IDIOMA --- */
+.langButtonContainer {
+  position: relative;
+}
+
+.langIcon {
+  background: none !important;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: lightgray;
+  transition: color 0.5s ease, background-color 0.3s ease;
+  border-radius: 50%;
+}
+.langIcon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.langIconSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.langMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: rgba(35, 35, 40, 0.9); /* Fondo similar al navbar scrolled */
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 0.5rem 0;
+  z-index: 60;
+  min-width: 100px;
+  backdrop-filter: blur(5px); /* Añadir algo de blur */
+}
+
+.langMenuItem {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  color: lightgray;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.langMenuItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.langMenuItemActive {
+  font-weight: 600;
+  color: white; /* O un color que destaque sobre el fondo oscuro */
+}

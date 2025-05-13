@@ -1,0 +1,187 @@
+/* components/sections/Showcase.module.css */
+
+.showcaseSection {
+    padding: 4rem 1rem 6rem;
+    background-color: var(--main-background, #000000);
+    overflow: hidden;
+  }
+  
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: relative;
+  }
+  
+  .title {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-primary-on-dark, #e0e0e0);
+    margin-bottom: 4rem;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Por defecto una columna */
+    gap: 1.5rem;
+    align-items: center; /* Importante para cuando una tarjeta es más grande */
+    justify-content: center;
+    /* perspective: 1000px; /* Para efectos 3D sutiles en las tarjetas (opcional) */
+  }
+  
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      /* max-width: 1100px; */ /* Comentado para que ocupe más si es necesario */
+      /* margin: 0 auto; */
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid {
+      gap: 2rem; /* Más separación en pantallas grandes */
+    }
+  }
+  
+  .card {
+    /* Mantenemos el fondo oscuro por si la imagen no carga o como fallback */
+    background-color: #111522;
+    border-radius: 1rem;
+    position: relative; /* Clave para el posicionamiento de la imagen y el overlay */
+    overflow: hidden; /* Para que la imagen y el overlay no se salgan de los bordes redondeados */
+    color: #a9b2c6;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 300px; /* Damos una altura mínima a las tarjetas, ajusta según necesites */
+    display: flex; /* Para poder usar flex-direction: column para el contenido */
+    flex-direction: column; /* Para que el contenido se apile verticalmente */
+    justify-content: flex-end; /* Alinea el .cardContent abajo */
+  }
+  
+  .cardBackgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Hace que la imagen cubra todo el div */
+    background-position: center; /* Centra la imagen */
+    z-index: 0; /* Detrás del overlay y el contenido */
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); /* Transición para zoom sutil */
+  }
+  
+  .cardOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* --- CAMBIO PRINCIPAL AQUÍ --- */
+    /* Gradiente de transparente (arriba) a negro semi-opaco (abajo) */
+    /* Puedes ajustar los porcentajes y la opacidad del negro */
+    background: linear-gradient(
+      to bottom, /* Dirección del gradiente */
+      rgba(0, 0, 0, 0.0) 0%,    /* Comienza transparente en la parte superior */
+      rgba(0, 0, 0, 0.2) 40%,   /* Una transición suave a un poco oscuro */
+      rgba(0, 0, 0, 0.8) 80%,   /* Más oscuro hacia abajo */
+      rgba(0, 0, 0, 0.95) 100%  /* Casi opaco en la parte inferior donde está el texto */
+    );
+    z-index: 1; /* Encima de la imagen de fondo, debajo del contenido de texto */
+    transition: opacity 0.4s ease; /* Transición para la opacidad si la cambiamos en hover/active */
+    border-radius: inherit; /* Hereda el border-radius de la tarjeta .card */
+  }
+  
+  .cardContent {
+    position: relative;
+    z-index: 2; /* Encima del overlay */
+    padding: 1.5rem; /* Padding para el contenido de texto */
+    /* El justify-content: flex-end en .card lo empuja abajo */
+  }
+  
+  .inactiveCard {
+    transform: scale(0.92);
+    opacity: 0.7; /* Más opacas que antes para que la imagen se vea un poco */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  .inactiveCard .cardBackgroundImage {
+    transform: scale(1.05); /* Imagen un poco más grande en inactivas */
+  }
+  .inactiveCard .cardOverlay {
+    background-color: rgba(0,0,0,0.7); /* Overlay más oscuro en inactivas */
+  }
+  
+  /* Hover sobre una tarjeta inactiva */
+  .card:hover, /* Aplicamos también al hover general para la que no es activa inicialmente */
+  .inactiveCard:hover {
+    transform: scale(1.05); /* Se hace un poco más grande (como la activa) */
+    opacity: 1;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3),
+                0 0 0 2px rgba(76, 129, 255, 0.5),
+                inset 0 0 20px rgba(76, 129, 255, 0.1);
+  }
+  .card:hover .cardBackgroundImage,
+  .inactiveCard:hover .cardBackgroundImage {
+      transform: scale(1.1); /* Zoom a la imagen al hacer hover */
+  }
+  .card:hover .cardOverlay,
+  .inactiveCard:hover .cardOverlay {
+      background-color: rgba(0,0,0,0.4); /* Overlay se aclara un poco en hover */
+  }
+  
+  
+  .activeCard {
+    transform: scale(1.08); /* Más grande que el hover normal */
+    opacity: 1;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35),
+                0 0 0 1px rgba(76, 129, 255, 0.7), /* Borde de luz más grueso */
+                inset 0 0 40px rgba(76, 129, 255, 0.25); /* Brillo interno más intenso */
+  }
+  .activeCard .cardBackgroundImage {
+    transform: scale(1.15); /* Imagen con más zoom en la activa */
+  }
+  .activeCard .cardOverlay {
+     background-color: rgba(0,0,0,0.35); /* Overlay más claro en la activa para que la imagen brille más */
+  }
+  
+  
+  .cardTitle {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cardDescription {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #e0e0e0; /* Un poco más brillante que antes */
+  }
+  
+  /* Botón "Más" (como lo tenías) */
+  .moreButtonContainer {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .moreButton {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #222;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    text-align: center;
+  }
+  .moreButton:hover {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08), inset 0 1px 0 0 rgba(255,255,255,0.1);
+  }

@@ -1,0 +1,42 @@
+/* components/layout/Layout.module.css */
+
+.layoutContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative; /* Para que el z-index del overlay funcione bien respecto al mainContent */
+}
+
+.mainContent {
+  flex-grow: 1;
+  position: relative; /* Para controlar el apilamiento con el overlay */
+  z-index: 1; /* Contenido principal por defecto */
+}
+
+/* Nuevo Overlay de Blur para la parte derecha de la página */
+.fullPageBlurOverlay {
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0; /* También podrías usar height: 100vh; */
+width: 45%; /* Ancho de la franja de blur, ajusta según necesites */
+/* max-width: 600px; O un ancho máximo */
+z-index: 998; /* Detrás del chatbot (que es 1000), pero encima del contenido principal */
+
+pointer-events: none; /* Para que no capture eventos del ratón */
+opacity: 0;
+transition: opacity 0.4s ease-in-out;
+
+/* El degradado de la máscara va de completamente opaco (negro) a la derecha
+   a completamente transparente (transparent) a la izquierda.
+   El blur se aplicará donde la máscara es opaca. */
+mask-image: linear-gradient(to left, black 60%, transparent 100%);
+-webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
+/* Puedes ajustar los porcentajes (60%, 100%) para cambiar la transición del degradado */
+}
+
+.fullPageBlurOverlay.active {
+opacity: 1;
+backdrop-filter: blur(6px); /* Ajusta la intensidad del blur */
+-webkit-backdrop-filter: blur(6px);
+}

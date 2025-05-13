@@ -1,0 +1,30 @@
+/* components/layout/Footer.module.css */
+
+.footer {
+    background-color: black; /* Fondo grisáceo claro */
+    margin-top: 2.5rem; /* mt-10 */
+    padding: 2rem 1rem; /* py-8 px-4 (simplificado, ajusta si es necesario) */
+  }
+  
+  .container {
+    max-width: 1280px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar */
+    text-align: center;
+  }
+  
+  .text {
+    color: var(--text-secondary); /* Gris secundario */
+    font-size: 0.875rem; /* text-sm */
+  }
+  
+  /* Podríamos añadir estilos para enlaces del footer más adelante */
+  /* .links {
+    margin-top: 0.5rem;
+  }
+  .link {
+    margin: 0 0.5rem;
+    text-decoration: underline;
+  }
+  .link:hover {
+    color: var(--text-primary);
+  } */
