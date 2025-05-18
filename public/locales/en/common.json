@@ -1,5 +1,5 @@
 {
-  "welcome": "Welcome to NexoAI",
+  "welcome": "Welcome to Solux",
   "tagline": "Connecting your business with the power of AI",
   "footer_rights_reserved": "All rights reserved.",
   "hero_title": "Connecting AI with your business",
@@ -39,9 +39,9 @@
   "contact_chatbot_placeholder": "Type your question...",
   "contact_info_email_intro": "Or email us directly at:",
   "projects_page_title": "Our Projects",
-  "projects_page_meta_desc": "Explore innovative AI projects delivered by NexoAI.",
+  "projects_page_meta_desc": "Explore innovative AI projects delivered by Solux.",
   "projects_page_main_title": "Our Work & Case Studies",
-  "projects_page_intro_desc": "At NexoAI, we partner with businesses of all sizes to integrate cutting-edge artificial intelligence solutions. Discover how we're helping companies like yours innovate and grow.",
+  "projects_page_intro_desc": "At Solux, we partner with businesses of all sizes to integrate cutting-edge artificial intelligence solutions. Discover how we're helping companies like yours innovate and grow.",
   "project1_title": "AI in Education Showcase",
   "project1_desc_short": "Personalized learning and intelligent tutoring.",
   "projects_section_education_desc": "Detailed description of our AI projects in the education sector, showcasing innovative solutions for learning and teaching.",
@@ -56,7 +56,7 @@
   "project5_title": "Data Analysis Platform",
   "project5_desc_short": "Unlocking insights with advanced data analytics.",
   "project_detail_generic_link": "View Project Details",
-  "chatbot_name": "NexoAI Assistant",
+  "chatbot_name": "Solux Assistant",
   "chatbot_project_prompt_intro": "Hi 👋 Interested in {projectName}? Ask me anything!",
   "chatbot_click_to_chat": "Click to chat",
   "chatbot_open_chat": "Open chat",
@@ -65,6 +65,7 @@
   "chatbot_send_message": "Send message",
   "chatbot_simulated_response": "Thanks for your question. I'm processing it...",
   "chatbot_resume_chat": "Resume chat about",
-  "chatbot_resume_chat_short": "Chat: {projectName}"
+  "chatbot_resume_chat_short": "Chat: {projectName}",
+  "chatbot_hard_cta_placeholder": "Please contact us by email to continue."
   
 }

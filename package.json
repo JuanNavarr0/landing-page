@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@langchain/community": "^0.3.43",
+    "@langchain/openai": "^0.5.10",
+    "chromadb": "^2.4.4",
+    "dotenv": "^16.5.0",
     "framer-motion": "^12.11.0",
+    "langchain": "^0.3.26",
     "next": "15.3.2",
     "next-i18next": "^15.4.2",
+    "openai": "^4.98.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",

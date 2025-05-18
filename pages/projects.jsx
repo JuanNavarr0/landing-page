@@ -52,24 +52,19 @@ const projectSectionsData = [
 
 export default function ProjectsPage() {
   const { t } = useTranslation('common');
-  const { triggerChatbot } = useChatbot(); // Obtenemos la función para disparar el chatbot del contexto
-
-  // No más activeChatbotProjectId, chatHistories, sectionRefs, observer aquí.
+  const { triggerChatbot } = useChatbot(); 
 
   const handleCuriosityClick = (projectTitleKey, projectIntroKey, projectId) => {
     const projectName = t(projectTitleKey);
-    // Usamos un texto por defecto si la clave de traducción no se encuentra, 
-    // aunque lo ideal es que todas las claves existan.
     const introMessageText = t(projectIntroKey, `Me gustaría saber más sobre el proyecto: ${projectName}.`);
-    
-    // Llamamos a triggerChatbot del contexto para enviar el mensaje inicial
     triggerChatbot(introMessageText, projectId); 
   };
 
   return (
     <>
       <Head>
-        <title>{t('projects_page_title', 'Nuestros Proyectos')} - NexoAI</title>
+        {/* Asegúrate de que el contenido de la etiqueta title sea un solo string */}
+        <title>{`${t('projects_page_title', 'Nuestros Proyectos')} - NexoAI`}</title>
         <meta name="description" content={t('projects_page_meta_desc', 'Explora proyectos innovadores de IA entregados por NexoAI.')} />
       </Head>
 
@@ -85,7 +80,6 @@ export default function ProjectsPage() {
               key={section.id}
               id={section.id}
               className={styles.projectSectionCard}
-              // Ya no necesitamos data-project-id ni ref para IntersectionObserver
             >
               <div className={styles.sectionDescriptionContainer}>
                 <h2>{t(section.titleKey)}</h2>
@@ -140,7 +134,6 @@ export default function ProjectsPage() {
                 ))}
               </div>
 
-              {/* NUEVO: Sección de "Tienes curiosidad?" */}
               <div className={cardStyles.curiositySection}>
                 <p className={cardStyles.curiosityText}>{t('project_card_curiosity_text', '¿Tienes curiosidad?')}</p>
                 <button
@@ -148,11 +141,10 @@ export default function ProjectsPage() {
                   className={cardStyles.curiosityButton}
                   aria-label={`${t('project_card_ask_chatbot_aria', 'Preguntar al chatbot sobre')} ${t(section.titleKey)}`}
                 >
-                  <FiChevronsRight size={24} /> {/* Icono de flecha */}
+                  <FiChevronsRight size={24} />
                   <span>{t('project_card_ask_button', 'Preguntar al Asistente')}</span>
                 </button>
               </div>
-              {/* Ya no se renderiza <ProjectChatbot /> aquí */}
             </section>
           ))}
         </div>
@@ -167,12 +159,12 @@ export async function getStaticProps({ locale }) {
     'projects_page_intro_desc', 'project1_title', 'project2_title', 'project3_title',
     'projects_section_education_desc', 'projects_section_hospitality_desc',
     'projects_section_b2b_desc', 'project_detail_generic_link',
-    // Claves del chatbot global y de la tarjeta de proyecto
     'chatbot_name', 'chatbot_open_chat', 'chatbot_close_chat', 
     'chatbot_input_placeholder', 'chatbot_send_message', 'chatbot_simulated_response',
     'chatbot_generic_greeting', 
     'project_card_curiosity_text', 'project_card_ask_button', 'project_card_ask_chatbot_aria',
     'project_intro_education', 'project_intro_hospitality', 'project_intro_b2b',
+    // Añade aquí cualquier otra clave que necesites precargar para la traducción
   ];
   return {
     props: {

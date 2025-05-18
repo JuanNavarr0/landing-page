@@ -1,5 +1,5 @@
 {
-  "welcome": "Bienvenido a NexoAI",
+  "welcome": "Bienvenido a Solux",
   "tagline": "Conectamos tu negocio con el poder de la IA",
   "footer_rights_reserved": "Todos los derechos reservados.",
   "hero_title": "Conectamos el poder de la IA con tu negocio",
@@ -39,9 +39,9 @@
   "contact_chatbot_placeholder": "Escribe tu pregunta...",
   "contact_info_email_intro": "O envíanos un email directamente a:",
   "projects_page_title": "Nuestros Proyectos",
-  "projects_page_meta_desc": "Explora proyectos innovadores de IA entregados por NexoAI.",
+  "projects_page_meta_desc": "Explora proyectos innovadores de IA entregados por Solux.",
   "projects_page_main_title": "Nuestro Trabajo y Casos de Estudio",
-  "projects_page_intro_desc": "En NexoAI, nos asociamos con empresas de todos los tamaños para integrar soluciones de inteligencia artificial de vanguardia. Descubre cómo estamos ayudando a compañías como la tuya a innovar y crecer.",
+  "projects_page_intro_desc": "En Solux, nos asociamos con empresas de todos los tamaños para integrar soluciones de inteligencia artificial de vanguardia. Descubre cómo estamos ayudando a compañías como la tuya a innovar y crecer.",
   "project1_title": "Caso de Estudio: IA en Educación",
   "project1_desc_short": "Aprendizaje personalizado y tutoría inteligente.",
   "projects_section_education_desc": "Descripción detallada de nuestros proyectos de IA en el sector educativo, mostrando soluciones innovadoras para el aprendizaje y la enseñanza.",
@@ -56,7 +56,7 @@
   "project5_title": "Plataforma de Análisis de Datos",
   "project5_desc_short": "Desbloqueando información con analítica de datos avanzada.",
   "project_detail_generic_link": "Ver Detalles del Proyecto",
-  "chatbot_name": "Asistente NexoAI",
+  "chatbot_name": "Asistente Solux",
   "chatbot_project_prompt_intro": "¡Hola 👋! ¿Interesado en {projectName}? ¡Pregúntame lo que quieras!",
   "chatbot_click_to_chat": "Haz clic para chatear",
   "chatbot_open_chat": "Abrir chat",
@@ -65,5 +65,6 @@
   "chatbot_send_message": "Enviar mensaje",
   "chatbot_simulated_response": "Gracias por tu pregunta. La estoy procesando...",
   "chatbot_resume_chat": "Reanudar chat sobre",
-  "chatbot_resume_chat_short": "Chat: {projectName}"
+  "chatbot_resume_chat_short": "Chat: {projectName}",
+  "chatbot_hard_cta_placeholder": "Por favor, contacta por email para continuar."
 }

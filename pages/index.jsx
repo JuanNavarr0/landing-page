@@ -12,7 +12,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>NexoAI - {t('hero_title_line1')}</title>
+        {/* Asegúrate de que el contenido de la etiqueta title sea un solo string */}
+        <title>{`NexoAI - ${t('hero_title_line1')}`}</title>
         <meta name="description" content={t('hero_subtitle')} />
         <link rel="icon" href="/favicon.ico" />
       </Head>

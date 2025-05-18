@@ -50,13 +50,13 @@ export default function Navbar() {
         <div className={styles.logoContainer}>
           <Link href="/" className={styles.logo}>
               <Image
-                src="/nexoai.png"
-                alt="NexoAI Logo"
+                src="/nexoai.jpg"
+                alt="SoluX AI Logo"
                 width={30}
                 height={30}
                 className={styles.logoImage}
               />
-              <span>NexoAI</span>
+              <span>Solux</span>
           </Link>
         </div>
 

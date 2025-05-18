@@ -1,179 +1,262 @@
 /* components/chatbot/GlobalChatbot.module.css */
 
 .globalChatbotContainer {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000; 
-  }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  /* El contenedor global no necesita un ancho fijo, 
+     su hijo .chatWindow lo tendrá */
+}
+
+.openButton {
+  background-color: var(--pastel-blue);
+  color: #111;
+  border: none;
+  border-radius: 50%;
+  width: 60px; 
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.openButton:hover {
+  transform: scale(1.1);
+  background-color: #8fb8e0;
+}
+
+.chatWindow {
+  /* width: 350px;  Quitamos el ancho fijo, se aplicará inline */
+  /* max-width y min-width se controlarán por JS, pero podemos poner un max-width base */
+  max-width: 80vw; /* Evita que sea más ancho que la pantalla */
+  min-height: 200px; /* Un alto mínimo para que no colapse */
+  max-height: calc(100vh - 40px); /* 20px arriba y 20px abajo */
   
-  .openButton {
-    background-color: var(--pastel-blue);
-    color: #111;
-    border: none;
-    border-radius: 50%;
-    width: 60px; 
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-  }
-  .openButton:hover {
-    transform: scale(1.1);
-    background-color: #8fb8e0;
-  }
+  background-color: transparent; /* O el color de fondo que tenías */
+  /* Si usas un fondo con blur, asegúrate que los estilos de Layout.module.css no interfieran
+     o que este .chatWindow tenga su propio backdrop-filter si es necesario.
+     Por ahora, asumimos que el blur es del overlay general. */
+  border-radius: 12px; 
+  border: none; /* O 1px solid rgba(255,255,255,0.1) si quieres un borde sutil */
   
-  .chatWindow {
-    width: 350px;
-    max-height: calc(100vh - 20px - 20px); 
-    
-    background-color: transparent;
-    border-radius: 12px; 
-    box-shadow: none; 
-    border: none;
-    backdrop-filter: none; 
-    
-    display: flex;
-    flex-direction: column; 
-    position: relative; 
-    animation: slideInUpChat 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
+  display: flex;
+  flex-direction: column; 
+  position: relative; /* Clave para posicionar el handle de redimensionamiento */
+  animation: slideInUpChat 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden; /* Para que los bordes redondeados afecten al contenido */
+}
+
+/* NUEVO: Estilos para el tirador de redimensionamiento */
+.resizeHandle {
+  position: absolute;
+  left: -5px; /* Ligeramente fuera para facilitar el agarre */
+  top: 0;
+  bottom: 0;
+  width: 10px; /* Ancho del área de agarre */
+  cursor: ew-resize; /* Cursor de redimensionamiento horizontal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Asegurar que esté por encima de otros elementos dentro del chat */
+  /* background-color: rgba(255, 255, 255, 0.1);  Para depuración visual */
+}
+
+.resizeHandleInnerBar {
+  width: 2px;
+  height: 20px; /* Altura de las barritas visuales */
+  background-color: rgba(255, 255, 255, 0.3); /* Color de las barritas */
+  border-radius: 1px;
+  margin: 0 1px; /* Espacio entre barritas si pones varias */
+}
+
+.resizeHandle:hover .resizeHandleInnerBar {
+  background-color: rgba(255, 255, 255, 0.6); /* Más visible al pasar el ratón */
+}
+
+.chatHeader {
+  padding: 8px 10px; 
+  background-color: transparent; 
+  border-bottom: none;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  color: var(--text-primary-on-dark, #e0e0e0); 
+  height: 40px; 
+  flex-shrink: 0; 
+  position: relative; /* Para que el z-index del handle no lo oculte */
+  z-index: 1;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--text-secondary-on-dark, #b0b0b0);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.2s, background-color 0.2s;
+}
+.closeButton:hover {
+  color: var(--text-primary-on-dark, #e0e0e0);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.messagesList {
+  flex-grow: 1; 
+  overflow-y: auto; 
+  padding: 20px 15px; /* Ajusta el padding si es necesario */
+  display: flex;
+  flex-direction: column; 
+  gap: 12px;
+  position: relative; 
+  z-index: 1;
   
-  .chatHeader {
-    padding: 8px 10px; 
-    background-color: transparent; 
-    border-bottom: none;
-    display: flex;
-    justify-content: flex-end; 
-    align-items: center;
-    color: var(--text-primary-on-dark, #e0e0e0); 
-    height: 40px; 
-    flex-shrink: 0; 
-  }
-  
-  .closeButton {
-    background: none;
-    border: none;
-    color: var(--text-secondary-on-dark, #b0b0b0);
-    cursor: pointer;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: color 0.2s, background-color 0.2s;
-  }
-  .closeButton:hover {
-    color: var(--text-primary-on-dark, #e0e0e0);
-    background-color: rgba(255, 255, 255, 0.15);
-  }
-  
-  .messagesList {
-    flex-grow: 1; 
-    overflow-y: auto; 
-    
-    padding: 25px 15px;
-    display: flex;
-    /* MODIFICADO: Quitar column-reverse. Usar el orden natural del DOM (arriba a abajo) */
-    flex-direction: column; 
-    gap: 12px;
-    position: relative; 
-    
-    /* La máscara de desvanecimiento superior sigue siendo útil */
-    mask-image: linear-gradient(to top, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%);
-  }
-  
-  /* Los estilos de .message, .message.bot, .message.user, .message p,
-     .messageForm, .input, .sendButton, y las animaciones y scrollbar
-     permanecen IGUAL que en la versión anterior.
-     No los repito aquí para brevedad, pero asegúrate de que estén en tu archivo.
+  mask-image: linear-gradient(to top, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%);
+}
+
+.message {
+  max-width: 85%; 
+  padding: 10px 14px;
+  border-radius: 18px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  word-wrap: break-word; /* Asegura que el texto se ajuste */
+  white-space: pre-wrap; /* Respeta saltos de línea y espacios múltiples */
+  animation: fadeInMessage 0.3s ease-out;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+}
+
+.message.bot {
+  background-color: #383a3f; 
+  color: var(--text-primary-on-dark, #e0e0e0);
+  align-self: flex-start; 
+  border-bottom-left-radius: 6px; 
+}
+
+.message.user {
+  background-color: var(--pastel-blue); 
+  color: #1a1a1a; 
+  align-self: flex-end; 
+  border-bottom-right-radius: 6px;
+}
+
+.message p { 
+  margin: 0; 
+  /* El white-space: pre-wrap en .message debería ser suficiente,
+     pero si tienes problemas con saltos de línea dentro de <p>, puedes añadirlo aquí también.
   */
-  
-  .message {
-    max-width: 85%; 
-    padding: 10px 14px;
-    border-radius: 18px;
-    line-height: 1.5;
-    font-size: 0.9rem;
-    word-wrap: break-word;
-    animation: fadeInMessage 0.3s ease-out;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
-  }
-  
-  .message.bot {
-    background-color: #383a3f; 
-    color: var(--text-primary-on-dark, #e0e0e0);
-    align-self: flex-start; /* Los mensajes del bot a la izquierda */
-    border-bottom-left-radius: 6px; 
-  }
-  
-  .message.user {
-    background-color: var(--pastel-blue); 
-    color: #1a1a1a; 
-    align-self: flex-end; /* Los mensajes del usuario a la derecha */
-    border-bottom-right-radius: 6px;
-  }
-  
-  .message p { margin: 0; }
-  
-  .messageForm {
-    display: flex;
-    padding: 10px 12px;
-    background-color: transparent;
-    border-top: none;
-    height: 62px; 
-    flex-shrink: 0; 
-  }
-  
-  .input {
-    flex-grow: 1;
-    padding: 10px 14px;
-    border: 1px solid #4a4a4f;
-    border-radius: 20px;
-    background-color: rgba(37, 37, 42, 0.8); 
-    color: var(--text-primary-on-dark, #e0e0e0);
-    font-size: 0.9rem;
-    margin-right: 10px;
-    outline: none;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  .input:focus {
-    border-color: var(--pastel-blue);
-    background-color: rgba(30, 30, 35, 0.9);
-  }
-  
-  .sendButton {
-    background-color: var(--pastel-blue);
-    color: #111;
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  .sendButton:hover {
-    background-color: #8fb8e0;
-  }
-  
-  @keyframes slideInUpChat {
-    from { opacity: 0; transform: translateY(30px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  
-  @keyframes fadeInMessage {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .messagesList::-webkit-scrollbar { width: 6px; }
-  .messagesList::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 10px; }
-  .messagesList::-webkit-scrollbar-thumb { background-color: #555; border-radius: 10px; }
-  .messagesList::-webkit-scrollbar-thumb:hover { background-color: #777; }
+}
+
+.messageForm {
+  display: flex;
+  padding: 10px 12px;
+  background-color: transparent;
+  border-top: none;
+  height: 62px; 
+  flex-shrink: 0; 
+  position: relative;
+  z-index: 1;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 10px 14px;
+  border: 1px solid #4a4a4f;
+  border-radius: 20px;
+  background-color: rgba(37, 37, 42, 0.8); 
+  color: var(--text-primary-on-dark, #e0e0e0);
+  font-size: 0.9rem;
+  margin-right: 10px;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.input:focus {
+  border-color: var(--pastel-blue);
+  background-color: rgba(30, 30, 35, 0.9);
+}
+
+.sendButton {
+  background-color: var(--pastel-blue);
+  color: #111;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0; /* Evita que se encoja */
+}
+.sendButton:hover {
+  background-color: #8fb8e0;
+}
+
+@keyframes slideInUpChat {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeInMessage {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.messagesList::-webkit-scrollbar { width: 6px; }
+.messagesList::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 10px; }
+.messagesList::-webkit-scrollbar-thumb { background-color: #555; border-radius: 10px; }
+.messagesList::-webkit-scrollbar-thumb:hover { background-color: #777; }
+
+/* Estilos del spinner y mensajes de error/finales (de la respuesta anterior) */
+.loadingIcon {
+  animation: spin 1s linear infinite;
+  margin: auto; 
+  display: block;
+}
+
+.loadingIconInButton {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.message.error p {
+  color: #ff6b6b; 
+  font-style: italic;
+}
+
+.message.finalMessage p {
+  font-weight: 500;
+}
+
+.input:disabled {
+  background-color: rgba(50, 50, 55, 0.7);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.sendButton:disabled {
+  background-color: #555; 
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Ejemplo en GlobalChatbot.module.css */
+.message.hardCtaMessage p {
+  font-style: italic;
+  background-color: var(--pastel-blue-light, #e0efff); /* Un fondo distintivo */
+  color: var(--text-primary, #333);
+  border-radius: 12px;
+  padding: 10px;
+}
